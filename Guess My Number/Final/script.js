@@ -6,7 +6,7 @@ const again = document.querySelector('.again');
 const check = document.querySelector('.check');
 const number = document.querySelector('.number');
 const scoreResult = document.querySelector('.score');
-const highscoreResult = document.querySelector('.highscore');
+const highScoreResult = document.querySelector('.highscore');
 const body = document.querySelector('body');
 const toggle = document.querySelector('.toggle');
 
@@ -15,24 +15,23 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
 
-// Event for checking number
-check.addEventListener('click', function () {
-  const guessedNumber = Number(guess.value);
-  if (!guessedNumber) {
+const guessNumberFunc = function () {
+  const guessNumber = Number(guess.value);
+  if (!guessNumber) {
     message.textContent = '🛑 No Number';
-  } else if (guessedNumber === secretNumber) {
+  } else if (guessNumber === secretNumber) {
     message.textContent = '✅ Correct Answer';
     if (score > highscore) {
       highscore = score;
-      highscoreResult.textContent = highscore;
+      highScoreResult.textContent = highscore;
     }
     body.style.backgroundColor = '#60b347';
-    number.textContent = guessedNumber;
+    number.textContent = guessNumber;
     number.style.width = '30rem';
   } else {
     if (score > 1) {
       message.textContent =
-        guessedNumber > secretNumber ? '📈 Too High!' : '📉 Too Low';
+        guessNumber > secretNumber ? '📈 Too High' : '📉 Too Low';
       score--;
       scoreResult.textContent = score;
     } else {
@@ -41,10 +40,9 @@ check.addEventListener('click', function () {
       scoreResult.textContent = 0;
     }
   }
-});
+};
 
-// Event for resetting the whole without reloading
-again.addEventListener('click', function () {
+const againBtnClick = function () {
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   message.textContent = 'Start guessing...';
   body.style.backgroundColor = '';
@@ -53,14 +51,15 @@ again.addEventListener('click', function () {
   guess.value = '';
   scoreResult.textContent = 20;
   score = 20;
-});
+};
 
-// Event for dark and light mode
+check.addEventListener('click', guessNumberFunc);
+again.addEventListener('click', againBtnClick);
+
 toggle.addEventListener('click', function () {
   body.classList.toggle('light');
-  if (toggle.textContent == '🌛') {
-    toggle.textContent = '🌞';
-  } else {
-    toggle.textContent = '🌛';
-  }
+  toggle.textContent =
+    toggle.textContent == '🌛'
+      ? (toggle.textContent = '🌞')
+      : (toggle.textContent = '🌛');
 });
