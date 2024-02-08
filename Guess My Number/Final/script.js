@@ -43,7 +43,7 @@ check.addEventListener('click', function () {
   }
 });
 
-// Event for resetting the whole w/out reloading
+// Event for resetting the whole without reloading
 again.addEventListener('click', function () {
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   message.textContent = 'Start guessing...';
