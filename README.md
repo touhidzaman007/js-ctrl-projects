@@ -1,1 +1,1 @@
-Dice Rolling - https://touhidzaman007.github.io/Rolling-Dice/
+Dice Rolling - [Dice Rolling Game](https://js-rollingdice.netlify.app/)
